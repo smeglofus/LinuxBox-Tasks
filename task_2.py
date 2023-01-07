@@ -1,12 +1,15 @@
 
-
 import os
-# give directory path and name/mask of desired file
-dir_path = "C:\\Users\\Dell\\Desktop"
-file_name = "komba.txt"
+import sys
+import fnmatch
 
-# Loop throught all files and directiries in dir_path and print found files
-for root, dirs, files in os.walk(dir_path):
-  for file in files:
-    if file == file_name:
-      print(os.path.join(root, file))
+def find_files(directory, file_name):
+  for root, dirs, files in os.walk(directory):
+    for file in files:
+      if fnmatch.fnmatch(file, file_name):
+        print(os.path.join(root, file))
+
+directory = sys.argv[1]
+file_name = sys.argv[2]
+
+find_files(directory, file_name)

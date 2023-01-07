@@ -1,20 +1,12 @@
 
-
-import re
-
-with open("log.txt", "r") as log:
-    for l in log:
-        if re.search("restart", l):
-            # if "restart" is found in line, print whole line
-            print(l)
-
-
 import sys
 import re
 
 # check all lines on STDIN
 for line in sys.stdin:
-  # look for "restart"
-  if re.search("restart", line):
-    # i restart is found, print whole line
-    print(line)
+    if re.search("restart", line):
+        print("\nSystem started again: ", line)
+    if re.search("exiting on signal", line):
+        print("\nServer crashed: ", line)
+        print("\nSystem crash detected: ", line)
+
